@@ -25,10 +25,12 @@ export const Container = styled.div`
   justify-content: space-around;
 `;
 
-export const Botao = styled.div`
+export const Botao = styled.button`
   width: 60px;
   height: 45px;
   border-radius: 11px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   margin: 0 7px;
+  background: white;
+  border: 0;
 `;
