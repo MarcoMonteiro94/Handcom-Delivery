@@ -33,4 +33,9 @@ export const Botao = styled.button`
   margin: 0 7px;
   background: white;
   border: 0;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
 `;

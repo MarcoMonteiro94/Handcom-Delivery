@@ -1,4 +1,5 @@
 import React from "react";
+import { MdSearch, MdFilterList } from "react-icons/md";
 
 import { Head, Botao, Container } from "./styles";
 
@@ -10,8 +11,12 @@ export default function Header() {
         <h2>Av. Pinheiro Laranja, nº50</h2>
       </div>
       <Container>
-        <Botao />
-        <Botao />
+        <Botao>
+          <MdSearch />
+        </Botao>
+        <Botao>
+          <MdFilterList />
+        </Botao>
       </Container>
     </Head>
   );
