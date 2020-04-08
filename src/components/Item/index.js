@@ -13,8 +13,6 @@ export default class Item extends Component {
     let { counter } = this.state;
 
     this.setState({ selected: true, hidden: true, counter: (counter += 1) });
-
-    console.log("Clicou", e.target);
   };
 
   render() {
@@ -30,7 +28,7 @@ export default class Item extends Component {
           type="submit"
           selected={selected}
         >
-          +
+          <span>+</span>
         </PlusButton>
         <div>
           <p>Café 3 Corações 500g</p>

@@ -17,10 +17,6 @@ export const SubmitButton = styled.button`
   font-size: 1.57em;
   color: #ffffff;
 
-  &[disabled] {
-    background: #d3d;
-  }
-
   svg {
     width: 24px;
     height: 24px;

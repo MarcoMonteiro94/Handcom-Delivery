@@ -16,8 +16,8 @@ export const Container = styled.div`
 
 export const PlusButton = styled.button`
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   width: 36px;
   height: 36px;
   background: #d96423;
@@ -49,7 +49,7 @@ export const HiddenDiv = styled.div.attrs((props) => ({
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 11px;
   z-index: -1;
-  animation: fadeIn 1s;
+  animation: fadeIn 0.5s;
 
   @keyframes fadeIn {
     from {
