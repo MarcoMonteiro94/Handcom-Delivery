@@ -1,14 +1,14 @@
 import React from "react";
 import { MdLocalMall } from "react-icons/md";
-import { Container } from "./styles";
+import { Container, SubmitButton } from "./styles";
 
 export default function Submit() {
   return (
     <Container>
-      <button>
+      <SubmitButton>
         <MdLocalMall />
         SACOLA
-      </button>
+      </SubmitButton>
     </Container>
   );
 }
