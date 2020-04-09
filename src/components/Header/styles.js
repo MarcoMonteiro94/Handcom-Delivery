@@ -40,22 +40,17 @@ export const Botao = styled.button`
   }
 `;
 
-export const Modal = styled.div.attrs((props) => ({
-  disabled: props.hidden,
-}))`
-  display: flex;
+export const Modal = styled.div`
+  display: ${(props) => (props.isVisible ? "flex" : "none")};
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   animation: fadeIn 0.5s;
-
-  &[disabled] {
-    display: none;
-  }
+  z-index: 999;
 `;
 
 export const ContainerModal = styled.div`

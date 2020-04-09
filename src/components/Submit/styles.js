@@ -4,6 +4,12 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 100;
 `;
 export const SubmitButton = styled.button`
   display: flex;

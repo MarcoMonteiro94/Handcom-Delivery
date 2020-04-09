@@ -25,30 +25,41 @@ export const PlusButton = styled.button`
   border: 0;
   font-size: 2.57em;
   color: #ffffff;
+  z-index: 20;
+  margin-right: 20px;
+
+  svg {
+    width: 26px;
+    height: 26px;
+  }
 `;
 
 export const Imagem = styled.div`
   width: 73px;
   height: 73px;
-  background: #e0e0e0;
   border-radius: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    border-radius: 13px;
+  }
 `;
 
-export const HiddenDiv = styled.div.attrs((props) => ({
-  disabled: props.hidden,
-}))`
+export const HiddenDiv = styled.div`
+  display: ${(props) => (props.isVisible ? "flex" : "none")};
   position: absolute;
   left: 35px;
-  display: none;
+  padding-left: 25px;
   justify-content: flex-end;
   align-items: center;
   font-size: 1.285em;
-  width: 50px;
   height: 32px;
   background: #ffffff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 11px;
-  z-index: -1;
+  z-index: 10;
   animation: fadeIn 0.5s;
 
   @keyframes fadeIn {
@@ -63,9 +74,5 @@ export const HiddenDiv = styled.div.attrs((props) => ({
 
   span {
     padding-right: 10px;
-  }
-
-  &[disabled] {
-    display: flex;
   }
 `;

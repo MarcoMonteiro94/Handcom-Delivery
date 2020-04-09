@@ -15,19 +15,19 @@ import {
 
 export default class Header extends Component {
   state = {
-    hidden: true,
+    isModalVisible: false,
   };
 
   openModal = () => {
-    this.setState({ hidden: false });
+    this.setState({ isModalVisible: true });
   };
 
   closeModal = () => {
-    this.setState({ hidden: true });
+    this.setState({ isModalVisible: false });
   };
 
   render() {
-    const { hidden } = this.state;
+    const { isModalVisible } = this.state;
 
     return (
       <>
@@ -45,7 +45,7 @@ export default class Header extends Component {
             </Botao>
           </Container>
         </Head>
-        <Modal hidden={hidden}>
+        <Modal isVisible={isModalVisible}>
           <ContainerModal>
             <ModalHead>
               <ExitButton onClick={this.closeModal}>
