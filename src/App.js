@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import GlobalStyle from "./styles/global";
 
 import Header from "./components/Header";
@@ -9,21 +9,34 @@ import { getGeneralOffers } from "./services/api";
 
 function App() {
   const [categories, setCategories] = useState([]);
-  const [products, setProducts] = useState([]);
+  const [offers, setOffers] = useState([]);
+
   useEffect(() => {
-    getGeneralOffers().then(
-      ({ data: { categoriasEmPromocao, promocoesGerais } }) => {
-        setCategories(categoriasEmPromocao);
-        setProducts(promocoesGerais);
-      }
-    );
+    getGeneralOffers().then((res) => {
+      setCategories(res?.categories);
+      setOffers(res?.offers);
+    });
   }, []);
+
+  const onSearch = useCallback((searchTerm) => {
+    return getGeneralOffers({ searchTerm }).then((res) => {
+      setCategories(res?.categories);
+      setOffers(res?.offers);
+    });
+  }, []);
+
+  const onCategoryChange = useCallback((categoryId) => {
+    return getGeneralOffers({ categoryId }).then((res) => {
+      setOffers(res?.offers);
+    });
+  }, []);
+
   return (
     <>
       <GlobalStyle />
-      <Header />
-      <Categories categories={categories} />
-      <ItemList products={products} />
+      <Header onSearch={onSearch} />
+      <Categories categories={categories} onCategoryChange={onCategoryChange} />
+      <ItemList offers={offers} />
       <Submit />
     </>
   );

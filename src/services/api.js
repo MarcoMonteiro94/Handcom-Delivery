@@ -1,15 +1,20 @@
+import { mapOfferResponseToCategory, mapOfferResponse } from "./mappers";
+
 const API_ENDPOINT = "https://boardapihomolog.smartretail.app/api";
 
 export const getGeneralOffers = async ({
-  IdEntrega = 0,
-  IdTipoProduto = 0,
-  IdVitrine = null,
-  ListaIdCategoria = [],
-  ListaIdEncarte = [],
-  NomeProdutoPesquisaStr = "",
-  NomeProdutoStr = "",
-  OrdemSecao = 0,
+  searchTerm = "",
+  categoryId = 0,
 } = {}) => {
+  const IdEntrega = 0;
+  const IdTipoProduto = categoryId;
+  const IdVitrine = null;
+  const ListaIdCategoria = [];
+  const ListaIdEncarte = [];
+  const NomeProdutoPesquisaStr = searchTerm;
+  const NomeProdutoStr = "";
+  const OrdemSecao = 0;
+
   const response = await fetch(
     `${API_ENDPOINT}/PromocoesGeraisMobile?idLoja=10719&pagina=0&quantidadePorPagina=150`,
     {
@@ -27,7 +32,12 @@ export const getGeneralOffers = async ({
         OrdemSecao,
       }),
     }
-  ).then((res) => res.json());
+  )
+    .then((res) => res.json())
+    .then(({ data: { promocoesGerais = [] } }) => ({
+      offers: mapOfferResponse(promocoesGerais),
+      categories: mapOfferResponseToCategory(promocoesGerais),
+    }));
   return response;
 };
 

@@ -96,7 +96,7 @@ export const ExitButton = styled.button`
 
 export const Categories = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
 
   button {
@@ -127,5 +127,30 @@ export const FilterButton = styled.button`
     width: 24px;
     height: 24px;
     margin-right: 13px;
+  }
+`;
+
+export const FormContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  form {
+    input {
+      display: ${(props) => (props.isVisible ? "inline-block" : "none")};
+      width: 215px;
+      padding: 10px 0 10px 10px;
+      margin-bottom: 32px;
+      background: #eee;
+      border: #eee solid;
+      border-radius: 20px;
+      outline: 0;
+      transition: border 0.1s ease-in;
+      animation: fadeIn 0.5s;
+
+      &:focus {
+        border: #bbb solid;
+      }
+    }
   }
 `;

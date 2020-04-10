@@ -5,12 +5,17 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-bottom: 27px;
+`;
 
-  div {
-    h3 {
-      font-weight: 600;
-      font-size: 1.29em;
-    }
+export const ItemContainer = styled.div`
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  h3 {
+    font-weight: 600;
+    font-size: 1.29em;
   }
 `;
 
@@ -35,8 +40,6 @@ export const PlusButton = styled.button`
 `;
 
 export const Imagem = styled.div`
-  width: 73px;
-  height: 73px;
   border-radius: 13px;
   display: flex;
   justify-content: center;
@@ -44,6 +47,8 @@ export const Imagem = styled.div`
 
   img {
     border-radius: 13px;
+    max-width: 73px;
+    max-height: 73px;
   }
 `;
 

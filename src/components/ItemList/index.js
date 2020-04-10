@@ -5,25 +5,28 @@ import Item from "../Item";
 
 import { Container } from "./styles";
 
-export default function ItemList({ products }) {
+export default function ItemList({ offers }) {
   return (
     <Container>
-      {products.map(({ IdProduto, ...products }) => (
-        <Item key={IdProduto} IdProduto={IdProduto} {...products} />
+      {offers.map(({ offerId, ...offers }) => (
+        <Item key={offerId} offerId={offerId} {...offers} />
       ))}
     </Container>
   );
 }
 
 Item.propTypes = {
-  products: PropTypes.arrayOf(
+  offers: PropTypes.arrayOf(
     PropTypes.shape({
-      IdProduto: PropTypes.number,
-      NomeStr: PropTypes.string,
+      offerId: PropTypes.string,
+      productId: PropTypes.number,
+      productName: PropTypes.string,
+      price: PropTypes.number,
+      imageUrl: PropTypes.string,
     })
   ),
 };
 
 Item.defaultProps = {
-  products: [],
+  offers: [],
 };

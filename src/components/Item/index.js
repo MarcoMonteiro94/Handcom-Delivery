@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 import { MdAdd } from "react-icons/md";
 
-import { Container, Imagem, PlusButton, HiddenDiv } from "./styles";
+import {
+  Container,
+  Imagem,
+  PlusButton,
+  HiddenDiv,
+  ItemContainer,
+} from "./styles";
 
 export default class Item extends Component {
   state = {
@@ -29,15 +35,7 @@ export default class Item extends Component {
   };
 
   render() {
-    const {
-      Estoques: [
-        {
-          Produto: { NomeStr },
-        },
-      ],
-      PrecoDoub,
-      ImagemPrincipal,
-    } = this.props;
+    const { productName, price, imageUrl } = this.props;
     const { selected, isCounterVisible, counter } = this.state;
 
     return (
@@ -45,19 +43,15 @@ export default class Item extends Component {
         <HiddenDiv onClick={this.handleRemove} isVisible={isCounterVisible}>
           <span>{counter}</span>
         </HiddenDiv>
-        <PlusButton
-          onClick={this.handleClick}
-          type="submit"
-          selected={selected}
-        >
+        <PlusButton onClick={this.handleClick} selected={selected}>
           <MdAdd />
         </PlusButton>
-        <div>
-          <p>{NomeStr}</p>
-          <h3>{PrecoDoub}</h3>
-        </div>
+        <ItemContainer>
+          <p>{productName}</p>
+          <h3>{price}</h3>
+        </ItemContainer>
         <Imagem>
-          <img src={ImagemPrincipal?.NomeStr} alt="" />
+          <img src={imageUrl} alt={productName} />
         </Imagem>
       </Container>
     );

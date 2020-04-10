@@ -11,11 +11,14 @@ import {
   Categories,
   FilterButton,
   ModalHead,
+  FormContainer,
 } from "./styles";
 
 export default class Header extends Component {
   state = {
     isModalVisible: false,
+    isSearchVisible: false,
+    newSearch: "",
   };
 
   openModal = () => {
@@ -26,8 +29,24 @@ export default class Header extends Component {
     this.setState({ isModalVisible: false });
   };
 
+  toggleSearch = () => {
+    const { isSearchVisible } = this.state;
+    this.setState({ isSearchVisible: !isSearchVisible });
+  };
+
+  handleChange = (e) => {
+    this.setState({ newSearch: e.target.value });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { onSearch } = this.props;
+
+    onSearch(this.state.newSearch);
+  };
+
   render() {
-    const { isModalVisible } = this.state;
+    const { isModalVisible, isSearchVisible } = this.state;
 
     return (
       <>
@@ -37,7 +56,7 @@ export default class Header extends Component {
             <h2>Av. Pinheiro Laranja, nº50</h2>
           </div>
           <Container>
-            <Botao>
+            <Botao onClick={this.toggleSearch}>
               <MdSearch />
             </Botao>
             <Botao onClick={this.openModal}>
@@ -45,6 +64,11 @@ export default class Header extends Component {
             </Botao>
           </Container>
         </Head>
+        <FormContainer isVisible={isSearchVisible} onSubmit={this.handleSubmit}>
+          <form>
+            <input type="text" onChange={this.handleChange} />
+          </form>
+        </FormContainer>
         <Modal isVisible={isModalVisible}>
           <ContainerModal>
             <ModalHead>
