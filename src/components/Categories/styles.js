@@ -22,4 +22,5 @@ export const CategoryButton = styled.button`
   border: 0;
   cursor: pointer;
   white-space: nowrap;
+  transition: background 0.3s ease-in;
 `;

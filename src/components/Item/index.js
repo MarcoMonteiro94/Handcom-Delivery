@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React, { useCallback, useContext } from "react";
 import { MdAdd } from "react-icons/md";
-
+import { CartContext } from "../../App";
+import { cartActions } from "../../stores/cartReducer";
 import {
   Container,
   Imagem,
@@ -9,51 +10,35 @@ import {
   ItemContainer,
 } from "./styles";
 
-export default class Item extends Component {
-  state = {
-    selected: false,
-    isCounterVisible: false,
-    counter: 0,
-  };
+const Item = ({ offerId, productName, price, imageUrl }) => {
+  const [cart, dispatchCart] = useContext(CartContext);
+  const currentCount = cart.items[offerId];
 
-  handleClick = () => {
-    const { counter } = this.state;
+  const handleClick = useCallback(() => {
+    dispatchCart({ type: cartActions.add, offerId });
+  }, [dispatchCart, offerId]);
 
-    this.setState({
-      selected: true,
-      isCounterVisible: true,
-      counter: counter + 1,
-    });
-  };
+  const handleRemove = useCallback(() => {
+    dispatchCart({ type: cartActions.remove, offerId });
+  }, [dispatchCart, offerId]);
 
-  handleRemove = () => {
-    const { counter } = this.state;
+  return (
+    <Container>
+      <HiddenDiv onClick={handleRemove} isVisible={currentCount > 0}>
+        <span>{currentCount}</span>
+      </HiddenDiv>
+      <PlusButton onClick={handleClick}>
+        <MdAdd />
+      </PlusButton>
+      <ItemContainer>
+        <p>{productName}</p>
+        <h3>{price}</h3>
+      </ItemContainer>
+      <Imagem>
+        <img src={imageUrl} alt={productName} />
+      </Imagem>
+    </Container>
+  );
+};
 
-    const newCounter = counter - 1;
-
-    this.setState({ isCounterVisible: newCounter !== 0, counter: newCounter });
-  };
-
-  render() {
-    const { productName, price, imageUrl } = this.props;
-    const { selected, isCounterVisible, counter } = this.state;
-
-    return (
-      <Container>
-        <HiddenDiv onClick={this.handleRemove} isVisible={isCounterVisible}>
-          <span>{counter}</span>
-        </HiddenDiv>
-        <PlusButton onClick={this.handleClick} selected={selected}>
-          <MdAdd />
-        </PlusButton>
-        <ItemContainer>
-          <p>{productName}</p>
-          <h3>{price}</h3>
-        </ItemContainer>
-        <Imagem>
-          <img src={imageUrl} alt={productName} />
-        </Imagem>
-      </Container>
-    );
-  }
-}
+export default Item;

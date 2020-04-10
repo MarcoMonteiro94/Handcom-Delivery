@@ -1,14 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import { MdLocalMall } from "react-icons/md";
-import { Container, SubmitButton } from "./styles";
+import { CartContext } from "../../App";
 
-export default function Submit() {
+import {
+  Container,
+  SubmitButton,
+  ContainerSubmit,
+  CounterItens,
+} from "./styles";
+
+const Submit = () => {
+  const [cart] = useContext(CartContext);
+
   return (
     <Container>
-      <SubmitButton>
-        <MdLocalMall />
-        SACOLA
-      </SubmitButton>
+      <ContainerSubmit>
+        <SubmitButton>
+          <MdLocalMall />
+          SACOLA
+        </SubmitButton>
+        <CounterItens>
+          <p>{cart.totalItems} itens</p>
+        </CounterItens>
+      </ContainerSubmit>
     </Container>
   );
-}
+};
+
+export default Submit;

@@ -5,15 +5,13 @@ import Item from "../Item";
 
 import { Container } from "./styles";
 
-export default function ItemList({ offers }) {
-  return (
-    <Container>
-      {offers.map(({ offerId, ...offers }) => (
-        <Item key={offerId} offerId={offerId} {...offers} />
-      ))}
-    </Container>
-  );
-}
+const ItemList = ({ offers }) => (
+  <Container>
+    {offers.map(({ offerId, ...offer }) => (
+      <Item key={offerId} offerId={offerId} {...offer} />
+    ))}
+  </Container>
+);
 
 Item.propTypes = {
   offers: PropTypes.arrayOf(
@@ -29,4 +27,7 @@ Item.propTypes = {
 
 Item.defaultProps = {
   offers: [],
+  onItemChange: () => {},
 };
+
+export default ItemList;
